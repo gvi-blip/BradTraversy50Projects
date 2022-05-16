@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kinetic Loader</title>
+    <style>
+      .container {
+        width: 300px;
+        height: 300px;
+        margin: 50px auto;
+        border: 1px solid black;
+        position: relative;
+      }
+
+      #t-1 {
+        border-top: 30px solid red;
+        border-left: 30px solid transparent;
+        border-right: 30px solid transparent;
+        width: 0;
+        height: 0;
+        margin: 0 auto;
+        transform-origin: bottom center;
+        /* transform: rotate(50deg); */
+      }
+      #t-2 {
+        border-bottom: 30px solid transparent;
+        border-top: 30px solid transparent;
+        border-right: 30px solid black;
+        width: 0;
+        height: 0;
+        margin: 0 auto;
+        /* transform-origin: top center; */
+        position: absolute;
+        left: 150px;
+        top: 0px;
+        /* transform: rotate(-90deg); */
+        transform-origin: left center;
+      }
+      .animation1 {
+        animation: tr1 2s ease-in infinite forwards;
+      }
+      .animation2 {
+        animation: tr2 2s ease-in infinite forwards;
+      }
+      @keyframes tr2 {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(180deg);
+        }
+        50% {
+          transform: rotate(180deg);
+        }
+        75% {
+          transform: rotate(360deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes tr1 {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(180deg);
+        }
+        75% {
+          transform: rotate(180deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .end {
+        animation-play-state: paused;
+        /* animation-iteration-count: 2; */
+      }
+      .buttons {
+        margin: 200px auto;
+        width: max-content;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="t-1"></div>
+      <div id="t-2"></div>
+      <div class="buttons">
+        <button onclick="t('start')">start</button>
+        <button onclick="t('stop')">stop</button>
+      </div>
+    </div>
+    <script>
+      let timerId = true;
+      function t(action) {
+        if (timerId) {
+          timerId = false;
+          if (action === "start") {
+            if (document.getElementById("t-1").classList.contains("end")) {
+              document.getElementById("t-1").classList.remove("end");
+              document.getElementById("t-2").classList.remove("end");
+              console.log("REmoving end");
+            }
+            if (
+              !document.getElementById("t-1").classList.contains("animation1")
+            ) {
+              console.log("adding an");
+              document.getElementById("t-1").classList += " animation1";
+              document.getElementById("t-2").classList += " animation2";
+            }
+          } else {
+            // document.getElementById("t-1").classList.remove("animation1");
+            //   document.getElementById("t-2").classList.remove("animation2");
+            document.getElementById("t-1").classList += " end";
+            document.getElementById("t-2").classList += " end";
+            console.log("added end");
+          }
+        }
+        setTimeout(() => {
+          timerId = true;
+        }, 500);
+      }
+    </script>
+  </body>
+</html>
