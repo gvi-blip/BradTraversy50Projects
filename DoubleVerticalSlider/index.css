@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+section {
+  position: relative;
+  overflow: hidden;
+}
+.container {
+  height: 100vh;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+#left {
+  width: 35%;
+  height: 100vh;
+  float: left;
+}
+
+#right {
+  width: 65%;
+  height: 100vh;
+  float: right;
+}
+
+button {
+  background: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: black;
+}
+
+#down-btn {
+  position: absolute;
+  right: 0px;
+  bottom: 40%;
+}
+
+#up-btn {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+}
+
+.container > div {
+  height: 100vh;
+  width: inherit;
+}
+
+.red {
+  background: red;
+}
+.blue {
+  background: blue;
+}
+.green {
+  background: green;
+}
+.yellow {
+  background: yellow;
+}
+
+#left-cont {
+  transform: translateY(-300vh);
+  transition: transform 1s ease-in-out;
+}
+#right-cont {
+  transform: translateY(0vh);
+  transition: transform 1s ease-in-out;
+}
