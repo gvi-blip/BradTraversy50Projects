@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto Text Effect</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        height: 100vh;
+        background: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 50px;
+      }
+      p {
+        margin-top: 150px;
+        font-size: 30px;
+        font-weight: bold;
+        color: yellow;
+      }
+      .speed-box {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p></p>
+      <div class="speed-box">
+        <span>Speed:</span>
+        <span>
+          <span class="speed">0</span>
+          <button onclick="display('up')">
+            <img src="./arrow-up.svg" alt="arrow up" />
+          </button>
+          <button onclick="display('down')">
+            <img src="./arrow-down.svg" alt="arrow up" />
+          </button>
+        </span>
+      </div>
+    </div>
+    <script>
+      let speed = 0;
+      let text = "May the force be with you⚔️";
+      let p = document.getElementsByTagName("p")[0];
+      let index = 0;
+      let anime;
+      const sd = document.getElementsByClassName("speed")[0];
+      function display(action) {
+        p.innerHTML = "";
+
+        clearInterval(anime);
+
+        speed =
+          action == "up"
+            ? speed == 10
+              ? 10
+              : speed + 1
+            : speed == 0
+            ? 0
+            : speed - 1;
+        sd.innerText = `${speed}`;
+        index = 0;
+
+        anime = setInterval(timer, 310 - speed * 31);
+      }
+      function timer() {
+        console.log(text.charAt(index));
+        p.innerHTML += `${
+          text.charAt(index) == " " ? "&nbsp;" : text.charAt(index)
+        }`;
+        index++;
+        if (index === text.length - 1) {
+          check();
+          // index = 0;
+        }
+      }
+      function check() {
+        console.log("clearing");
+        clearInterval(anime);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hoverboard Effect</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: #111;
+      }
+      .container {
+        max-width: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .square {
+        background: #1d1d1d;
+        box-shadow: 0 0 2px black;
+        height: 16px;
+
+        width: 20px;
+        margin: 2px;
+        transition: 1s ease;
+      }
+      .square:hover {
+        transition-duration: 0s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="container"></div>
+  </body>
+  <script>
+    let div;
+    const cont = document.getElementById("container");
+    const colors = ["#e74c3c", "#8e44ad", "#3498db", "#e67e22", "#2ecc71"];
+    for (let i = 0; i < 304; i = i + 1) {
+      div = document.createElement("div");
+      div.classList += " square";
+      cont.appendChild(div);
+    }
+    const squares = document.querySelectorAll(".square");
+    for (square of squares) {
+      square.addEventListener("mouseover", fill);
+      square.addEventListener("mouseleave", empty);
+    }
+    function fill() {
+      this.style.background = `${colors[Math.floor(Math.random() * 5)]}`;
+    }
+    function empty() {
+      this.style.background = "#1d1d1d";
+    }
+  </script>
+</html>

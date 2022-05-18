@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Ripple Effect</title>
+    <style>
+      body {
+        height: 100vh;
+        background: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .button {
+        height: 20px;
+        width: 150px;
+        padding: 20px 10px;
+        color: white;
+        background: rgb(76, 7, 76);
+        border-radius: 10px;
+        border: none;
+        /* overflow: hidden; */
+        text-align: center;
+      }
+      .container {
+        overflow: hidden;
+        position: relative;
+      }
+      .circle {
+        height: 100px;
+        width: 100px;
+        background: white;
+        /* border-radius: 50%; */
+        display: none;
+        animation: fade 0.5s ease 1;
+        position: absolute;
+        /* top: -50px;
+        left: -50px; */
+      }
+      @keyframes fade {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" onclick="fadeCircle(event)">
+      <!-- <span class="circle"></span> -->
+      <div class="button">RIPPLE EFFECT</div>
+    </div>
+    <script>
+      //   const circle = document.querySelector(".circle");
+      const c = document.querySelector(".container");
+      let t;
+      function fadeCircle(event) {
+        const circle = document.createElement("div");
+
+        circle.classList += " circle";
+
+        t = event.offSetY;
+        console.log(t);
+        // circle.style.top = `${event.offSetY}px`;
+        circle.style.top = event.offSetY + "px";
+        circle.style.left = `${event.offSetX}px`;
+        c.appendChild(circle);
+        circle.style.display = "block";
+        setTimeout(() => {
+          circle.style.display = "none";
+        }, 400);
+      }
+    </script>
+  </body>
+</html>

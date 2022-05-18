@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Double Heart Click</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        height: 100vh;
+        background: rgb(218, 213, 213);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px;
+      }
+      h1 {
+        margin-bottom: 30px;
+      }
+      img {
+        margin-top: 30px;
+      }
+      #img-cont{
+          position:relative;
+      }
+      .heart{
+        display:none;
+        position:absolute;
+        animation: fade 0.4s ease-out;
+        font-size:50px;
+        background:none;
+       
+
+      }
+ 
+      @keyframes fade {
+          0%{
+              opacity:1;
+              transform: scale(1);
+              
+          }
+          100%{
+              opacity:0;
+              transform: scale(1.5);
+
+          }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Double click on the image to ❤️ it</h1>
+      <p>You liked it <span id="count">0</span> times</p>
+      <div id="img-cont">
+          <div class="heart">❤️</div>
+      <img
+        src="./may_the_force_be_with_you_by_akuanakgembala9_dd8pe1f-fullview.jpg"
+        alt="star wars"
+        height="300"
+        width="300"
+        ondblclick="displayheart(event)"
+      />
+    </div>
+    <script>
+        let timerId = true;
+        let count=0;
+        const heart= document.querySelector(".heart");
+        const c = document.querySelector("#count");
+      function displayheart(event) {
+          if(timerId){
+              timerId=false;
+          count++;
+          c.innerText=`${count}`;
+          heart.style.top= `${event.offsetY-10}px`;
+          heart.style.left= `${event.offsetX-30}px`;
+          heart.style.display="block";
+          setTimeout(() => {
+            heart.style.display="none";
+            timerId=true;
+          },300);
+          
+      }
+    }
+    </script>
+  </body>
+</html>
