@@ -19,7 +19,7 @@
         padding: 20px 10px;
         color: white;
         background: rgb(76, 7, 76);
-        border-radius: 10px;
+        /* border-radius: 10px; */
         border: none;
         /* overflow: hidden; */
         text-align: center;
@@ -32,7 +32,7 @@
         height: 100px;
         width: 100px;
         background: white;
-        /* border-radius: 50%; */
+        border-radius: 50%;
         display: none;
         animation: fade 0.5s ease 1;
         position: absolute;
@@ -46,35 +46,37 @@
         }
         100% {
           opacity: 0;
-          transform: scale(1.2);
+          transform: scale(4);
         }
+      }
+      .button:hover {
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
     <div class="container" onclick="fadeCircle(event)">
-      <!-- <span class="circle"></span> -->
+      <span class="circle"></span>
       <div class="button">RIPPLE EFFECT</div>
     </div>
     <script>
       //   const circle = document.querySelector(".circle");
       const c = document.querySelector(".container");
-      let t;
+      let t = 0;
       function fadeCircle(event) {
         const circle = document.createElement("div");
 
         circle.classList += " circle";
+        // alert(event.clientY);
+        circle.style.top = `${event.clientY - 250}px`;
 
-        t = event.offSetY;
-        console.log(t);
-        // circle.style.top = `${event.offSetY}px`;
-        circle.style.top = event.offSetY + "px";
-        circle.style.left = `${event.offSetX}px`;
+        circle.style.left = `${event.clientX - 450}px`;
         c.appendChild(circle);
         circle.style.display = "block";
         setTimeout(() => {
           circle.style.display = "none";
-        }, 400);
+          circle.classList.remove("circle");
+        }, 450);
       }
     </script>
   </body>

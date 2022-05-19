@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+h1 {
+  margin: 20px;
+}
+input {
+  margin: 15px;
+  height: 0;
+  width: 0;
+}
+
+label {
+  content: "";
+  height: 22px;
+  width: 50px;
+  border: 1px solid black;
+  display: inline-block;
+  margin-right: 10px;
+  background: grey;
+  border: none;
+  border-radius: 10px;
+  position: relative;
+  padding: 2px 0;
+}
+.ball {
+  /* display: inline-block; */
+  height: 18px;
+  width: 18px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  right: 30px;
+}
+
+.move-ball-right {
+  animation: move-ball-right 0.5s ease-in-out 1 forwards;
+}
+.move-ball-left {
+  animation: move-ball-left 0.5s ease 1 forwards;
+}
+.label-active {
+  animation: bp 0.5s ease 1 forwards;
+}
+
+.label-inactive {
+  animation: bg 0.5s ease 1 forwards;
+}
+@keyframes bp {
+  0% {
+    background: grey;
+  }
+  100% {
+    background: purple;
+  }
+}
+@keyframes bg {
+  0% {
+    background: purple;
+  }
+  100% {
+    background: grey;
+  }
+}
+@keyframes move-ball-right {
+  0% {
+    right: 30px;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    right: 2px;
+    transform: scale(1);
+  }
+}
+@keyframes move-ball-left {
+  0% {
+    right: 2px;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    right: 30px;
+    transform: scale(1);
+  }
+}
+
+label:hover {
+  cursor: pointer;
+}
