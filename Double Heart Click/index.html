@@ -32,12 +32,17 @@
         display:none;
         position:absolute;
         animation: fade 0.4s ease-out;
-        font-size:50px;
-        background:none;
-       
+        /* font-size:50px; */
+        /* background:none; */
+       height:60px;
+       width:70px;
 
       }
  
+      .heart img{
+        height:100%;
+        width:100%;
+      }
       @keyframes fade {
           0%{
               opacity:1;
@@ -57,7 +62,7 @@
       <h1>Double click on the image to ❤️ it</h1>
       <p>You liked it <span id="count">0</span> times</p>
       <div id="img-cont">
-          <div class="heart">❤️</div>
+          <div class="heart"><img src="./6Tr5eLnjc.png" alt="heart"></div>
       <img
         src="./may_the_force_be_with_you_by_akuanakgembala9_dd8pe1f-fullview.jpg"
         alt="star wars"
@@ -76,7 +81,7 @@
               timerId=false;
           count++;
           c.innerText=`${count}`;
-          heart.style.top= `${event.offsetY-10}px`;
+          heart.style.top= `${event.offsetY-30}px`;
           heart.style.left= `${event.offsetX-30}px`;
           heart.style.display="block";
           setTimeout(() => {

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Carousel</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: rgb(236, 235, 239);
+      }
+      .container {
+        height: 300px;
+        width: 350px;
+        border-radius: 10px;
+        box-shadow: 10px 10px 20px rgba(52, 2, 2, 0.5);
+        overflow: hidden;
+      }
+      #carousel {
+        width: 100%;
+        height: 90%;
+        border-radius: 3%;
+        display: flex;
+        position: relative;
+        transform: translateX(0);
+        transition: transform 2s ease-in-out;
+      }
+
+      button {
+        background: purple;
+        color: white;
+        width: 45%;
+        height: 10%;
+        margin: 0px 7.5px;
+        border: none;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="carousel">
+        <img src="./00012.jpg" alt="1" />
+        <img src="./00013.jpg" alt="2" />
+        <img src="./00014.jpg" alt="3" />
+        <img src="./00015.jpg" alt="4" />
+      </div>
+      <button id="prev" onclick="action('prev')">Prev</button>
+      <button id="next" onclick="action('next')">Next</button>
+    </div>
+    <script>
+      const carousel = document.getElementById("carousel");
+      const img = document.getElementsByTagName("img");
+      console;
+      let idx = 0;
+      let interval = setInterval(run, 2000);
+      function run() {
+        idx++;
+        changeImage();
+      }
+      function changeImage() {
+        if (idx > img.length - 1) {
+          idx = 0;
+        } else if (idx < 0) {
+          idx = img.length - 1;
+        }
+        carousel.style.transform = `translateX(-${idx * 100}%)`;
+      }
+
+      function resetInterval() {
+        clearInterval(interval);
+        interval = setInterval(run, 2000);
+      }
+      function action(event) {
+        if (event === "prev") {
+          idx--;
+        } else {
+          idx++;
+        }
+        changeImage();
+        resetInterval();
+      }
+    </script>
+  </body>
+</html>

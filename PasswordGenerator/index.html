@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form action="#" name="form1" onsubmit=" generatePassword(event)">
+        <h1>Password Generator</h1>
+        <div class="pass-container">
+          <input type="text" id="password" name="password" placeholder="" />
+          <img
+            src="./clipboard.svg"
+            alt="Copy to clipbboard"
+            id="clipboard"
+            title="Copy to clipboard"
+            onclick="copy()"
+          />
+          <span id="tooltip">Copy to Cliboard</span>
+        </div>
+        <label for="p-length">Password Length</label>
+        <input
+          type="number"
+          id="p-length"
+          step="1"
+          min="6"
+          max="15"
+          name="param"
+          placeholder="6"
+        /><br />
+        <label for="ucaseletters">Include UpperCase letters</label>
+        <input
+          type="checkbox"
+          id="ucaseletters"
+          value="ucase"
+          name="param"
+        /><br />
+        <label for="lcaseletters">Include LowerCase letters</label>
+        <input
+          type="checkbox"
+          id="lcaseletters"
+          value="lcase"
+          name="param"
+        /><br />
+        <label for="numbers">Include Numbers</label>
+        <input type="checkbox" id="numbers" value="number" name="param" /><br />
+        <label for="symbols">Include Symbols</label>
+        <input type="checkbox" id="symbols" value="symbol" name="param" /><br />
+        <button>Generate Password</button>
+      </form>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
