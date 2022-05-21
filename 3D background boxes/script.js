@@ -1,23 +1,45 @@
-let square;
 (() => {
-  let count = 0,
-    x = 25,
-    y = 25;
-
-  for (let i = 0; i < 16; i++) {
-    square = document.createElement("div");
-    square.classList += " blocks";
-    if (count == 4) {
-      count = 0;
-      y += 25;
-      x = 25;
-    } else {
-      if (count != 0) {
-        x += 25;
-      }
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      square = document.createElement("div");
+      square.classList += " blocks three-d";
+      square.style.backgroundPosition = `${-j * 70}px ${-i * 70}px`;
+      document.querySelector(".container").appendChild(square);
     }
-    count++;
-    square.style.backgroundPosition = `${x}% ${y}%`;
-    document.querySelector(".container").appendChild(square);
   }
 })();
+const blocks = document.getElementsByClassName("blocks");
+const container = document.querySelector(".container");
+function magic() {
+  if (!container.classList.contains("ctd")) {
+    setTimeout(() => {
+      for (let i = 0; i < blocks.length; i++) {
+        blocks[i].classList.remove("three-d");
+      }
+    }, 400);
+    setTimeout(() => {
+      container.classList += " ctd";
+    }, 800);
+    for (let i = 0; i < blocks.length; i++) {
+      blocks[i].classList.remove("e-rotate");
+
+      blocks[i].classList += " r-rotate";
+    }
+    container.classList.remove("ttd");
+    container.classList += " td";
+  } else {
+    container.classList.remove("ctd");
+    container.classList.remove("td");
+    container.classList += " ttd";
+
+    setTimeout(() => {
+      for (let i = 0; i < blocks.length; i++) {
+        blocks[i].classList += " three-d";
+      }
+    }, 100);
+    for (let i = 0; i < blocks.length; i++) {
+      blocks[i].classList.remove("r-rotate");
+      blocks[i].classList += " e-rotate";
+    }
+  }
+}

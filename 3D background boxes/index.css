@@ -8,29 +8,116 @@ body {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
 }
-
+.magic {
+  background: yellow;
+  color: black;
+  height: 30px;
+  width: 100px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  border: none;
+}
+.magic:hover {
+  cursor: pointer;
+}
+/* .check {
+  background: url("./00014.jpg");
+  height: 280px;
+  width: 280px;
+  background-size: 280px 280px;
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
+}
+.s {
+  height: 70px;
+  width: 70px;
+  background: url("./00014.jpg");
+  background-size: 280px 280px;
+  background-position: 0px -140px;
+}
+.ch {
+  height: 70px;
+  width: 70px;
+  border: 1px solid black;
+} */
 .container {
   width: 400px;
   height: 400px;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+}
+
+.td {
+  animation: reduce 1s ease forwards;
+}
+@keyframes reduce {
+  0% {
+    height: 400px;
+    width: 400px;
+  }
+  100% {
+    height: 280px;
+    width: 280px;
+  }
+}
+.ttd {
+  animation: expand 1s ease forwards;
+}
+@keyframes expand {
+  0% {
+    height: 280px;
+    width: 280px;
+  }
+  100% {
+    height: 400px;
+    width: 400px;
+  }
+}
+.ctd {
+  transition: all 0.01s ease;
+}
+.ctd::before {
+  content: "";
+  height: 280px;
+  width: 40px;
+  background: rgb(234, 234, 125);
+
+  transform: skewY(35deg);
+  position: absolute;
+  right: -39.5px;
+  top: 13.5px;
+}
+.ctd::after {
+  content: "";
+  height: 28px;
+  width: 280px;
+  background: rgb(238, 238, 3);
+  transform: skewx(55deg);
+  position: absolute;
+  bottom: -28px;
+  left: 20px;
 }
 
 .blocks {
   height: 70px;
   width: 70px;
   position: relative;
-  background: black;
+  background: url("./giphy\ \(1\).gif");
+  background-size: 280px 280px;
+}
+
+.three-d {
   margin-right: 30px;
   margin-bottom: 30px;
-  background: url("./00014.jpg");
-  background-repeat: no-repeat;
-  background-size: 280px 280px;
-  /* background-position: 100% 25%; */
 }
-.blocks::after {
+.three-d::after {
   content: "";
   height: 15px;
   width: 70px;
@@ -39,9 +126,8 @@ body {
   left: 10px;
   background: rgb(226, 226, 6);
   transform: skewX(55deg);
-  /* margin-bottom: 10px; */
 }
-.blocks::before {
+.three-d::before {
   content: "";
   height: 70px;
   width: 20px;
@@ -50,5 +136,40 @@ body {
   top: 8px;
   background: rgb(234, 234, 125);
   transform: skewY(35deg);
-  /* margin-right: 10px; */
+}
+
+.r-rotate {
+  animation: r-rotate 1s ease forwards;
+}
+
+@keyframes r-rotate {
+  0% {
+    margin-right: 30px;
+    margin-bottom: 30px;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    margin-right: 0px;
+    margin-bottom: 0px;
+    transform: rotate(360deg);
+  }
+}
+
+.e-rotate {
+  animation: e-rotate 1s ease forwards;
+}
+
+@keyframes e-rotate {
+  0% {
+    margin-right: 0px;
+    margin-bottom: 0px;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    margin-right: 30px;
+    margin-bottom: 30px;
+    transform: rotate(-360deg);
+  }
 }
