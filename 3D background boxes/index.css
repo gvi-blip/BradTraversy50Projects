@@ -54,7 +54,7 @@ body {
   position: relative;
 }
 
-.td {
+.reduce {
   animation: reduce 1s ease forwards;
 }
 @keyframes reduce {
@@ -67,7 +67,7 @@ body {
     width: 280px;
   }
 }
-.ttd {
+.expand {
   animation: expand 1s ease forwards;
 }
 @keyframes expand {
@@ -109,6 +109,7 @@ body {
   height: 70px;
   width: 70px;
   position: relative;
+  border: none;
   background: url("./giphy\ \(1\).gif");
   background-size: 280px 280px;
 }
@@ -116,6 +117,7 @@ body {
 .three-d {
   margin-right: 30px;
   margin-bottom: 30px;
+  transition: 1s ease;
 }
 .three-d::after {
   content: "";
@@ -133,7 +135,7 @@ body {
   width: 20px;
   position: absolute;
   right: -20px;
-  top: 8px;
+  top: 7.5px;
   background: rgb(234, 234, 125);
   transform: skewY(35deg);
 }

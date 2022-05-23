@@ -25,12 +25,12 @@ function magic() {
 
       blocks[i].classList += " r-rotate";
     }
-    container.classList.remove("ttd");
-    container.classList += " td";
+    container.classList.remove("expand");
+    container.classList += " reduce";
   } else {
     container.classList.remove("ctd");
-    container.classList.remove("td");
-    container.classList += " ttd";
+    container.classList.remove("reduce");
+    container.classList += " expand";
 
     setTimeout(() => {
       for (let i = 0; i < blocks.length; i++) {
