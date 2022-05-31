@@ -65,11 +65,12 @@
         "load",
         function () {
           const touchsurface = document.querySelector(".container");
+          console.log(touchsurface.firstElementChild);
           let startX,
             startY,
             dist,
-            threshold = 150, //required min distance traveled to be considered swipe
-            allowedTime = 200, // maximum time allowed to travel that distance
+            threshold = 250, //required min distance traveled to be considered swipe
+            allowedTime = 400, // maximum time allowed to travel that distance
             elapsedTime,
             startTime,
             idx = 0;
