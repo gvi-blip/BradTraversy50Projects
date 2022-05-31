@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swipe Event</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        width: 500px;
+        border: 1px solid black;
+      }
+      .container > div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        overflow: hidden;
+        height: 150px;
+      }
+      .item {
+        height: 120px;
+        width: 200px;
+        background: #183b56;
+        flex-shrink: 0;
+        /* display: inline; */
+      }
+      .item + .item {
+        margin-left: 20px;
+      }
+      @media (max-width: 440px) {
+        .container {
+          width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+    </div>
+    <script>
+      window.addEventListener(
+        "load",
+        function () {
+          const touchsurface = document.querySelector(".container");
+          let startX,
+            startY,
+            dist,
+            threshold = 150, //required min distance traveled to be considered swipe
+            allowedTime = 200, // maximum time allowed to travel that distance
+            elapsedTime,
+            startTime,
+            idx = 0;
+
+          function handleswipe(isrightswipe) {
+            if (isrightswipe) {
+              touchsurface.firstElementChild.style.transform = `translateX(${
+                idx * 270
+              }px)`;
+              idx++;
+            } else {
+              touchsurface.firstElementChild.style.transform = `translateX(-${
+                idx * 270
+              }px)`;
+              idx--;
+            }
+          }
+
+          touchsurface.addEventListener(
+            "touchstart",
+            function (e) {
+              // touchsurface.innerHTML = "";
+              var touchobj = e.changedTouches[0];
+              dist = 0;
+              startX = touchobj.pageX;
+              startY = touchobj.pageY;
+              startTime = new Date().getTime(); // record time when finger first makes contact with surface
+              e.preventDefault();
+            },
+            false
+          );
+
+          touchsurface.addEventListener(
+            "touchmove",
+            function (e) {
+              e.preventDefault(); // prevent scrolling when inside DIV
+            },
+            false
+          );
+
+          touchsurface.addEventListener(
+            "touchend",
+            function (e) {
+              var touchobj = e.changedTouches[0];
+              dist = touchobj.pageX - startX; // get total dist traveled by finger while in contact with surface
+              elapsedTime = new Date().getTime() - startTime; // get time elapsed
+              // check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
+              var swiperightBol =
+                elapsedTime <= allowedTime &&
+                dist >= threshold &&
+                Math.abs(touchobj.pageY - startY) <= 100;
+              handleswipe(swiperightBol);
+              e.preventDefault();
+            },
+            false
+          );
+        },
+        false
+      ); // end window.onload
+    </script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dad Jokes</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #686de0;
+        padding: 20px;
+      }
+      .container {
+        /* height: 50%; */
+        width: 600px;
+        max-width: 100%;
+        text-align: center;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+        padding: 50px 20px;
+      }
+      h3 {
+        margin: 0;
+        opacity: 0.5;
+        letter-spacing: 2px;
+      }
+      #joke {
+        font-size: 30px;
+        letter-spacing: 1px;
+        line-height: 40px;
+        margin: 50px auto;
+        max-width: 600px;
+        transition: 0.5s ease;
+      }
+      button {
+        background: #9f68e0;
+        border: none;
+        border-radius: 10px;
+        padding: 14px 40px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:active {
+        transform: scale(0.9);
+      }
+      button:focus {
+        outline: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h3>Don't laugh challenge</h3>
+      <p id="joke">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem
+        commodi rem nisi nesciunt ab quo!
+      </p>
+      <button onclick="getNewJoke()">Get Another Joke</button>
+    </div>
+    <script>
+      let url = "https://pokeapi.co/api/v2/pokemon?limit=1";
+      let pok = "";
+      function getNewJoke() {
+        console.log("inside get new joke");
+        Promise.race([getDadJoke().then(removeLoader), timeOut()]).catch(
+          showLoader
+        );
+      }
+
+      function timeOut() {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            reject();
+          }, 1);
+        });
+      }
+      function showLoader() {
+        console.log("showloader");
+        document.getElementById("joke").innerText = "Loading";
+      }
+      function removeLoader() {
+        console.log("Remove Loader");
+        document.getElementById("joke").innerText = pok;
+      }
+      const getDadJoke = async () => {
+        try {
+          let res = await fetch(url);
+          //   console.log(typeof res);
+          //   document.getElementById("joke").innerText = "lorem2";
+          let joke = await res.json();
+          pok = joke.results[0].name;
+          //   poke=
+          //   console.log(joke);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+    </script>
+  </body>
+</html>
