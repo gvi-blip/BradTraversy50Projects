@@ -20,13 +20,13 @@
       .container {
         width: 500px;
         border: 1px solid black;
+        overflow: hidden;
       }
       .container > div {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-around;
-        overflow: hidden;
         height: 150px;
       }
       .item {
@@ -34,6 +34,7 @@
         width: 200px;
         background: #183b56;
         flex-shrink: 0;
+        transition: translateX 1s ease;
         /* display: inline; */
       }
       .item + .item {
