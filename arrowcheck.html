@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="check">Click</button>
+    <script>
+      setTimeout(() => {
+        console.log("Five");
+        for (let i = 0; i < 10000; i++) {
+          console.log(i);
+        }
+      }, 5000);
+      setTimeout(() => {
+        console.log("Six");
+      }, 6000);
+      setTimeout(() => {
+        console.log("seven");
+      }, 7000);
+      setTimeout(() => {
+        console.log("eight");
+      }, 8000);
+      setTimeout(() => {
+        console.log("nine");
+      }, 9000);
+      setTimeout(() => {
+        console.log("ten");
+      }, 10000);
+
+      //   const obj = {
+      //     arrow: () => {
+      //       console.log(this);
+      //     },
+      //   };
+      const arrow = () => {
+        console.log(this);
+      };
+      document.getElementById("check").addEventListener("click", arrow);
+      const obj = {
+        a: 1,
+        b: 2,
+        c: {
+          d: 3,
+          e: {
+            f: 4,
+            g: 5,
+            h: {
+              i: 6,
+              j: 7,
+              k: 8,
+              l: {
+                m: 9,
+                n: {
+                  o: 10,
+                  p: {
+                    q: 100,
+                  },
+                },
+              },
+              check: 420,
+              again: {
+                po: 44,
+                ui: {
+                  do: 3,
+                  eo: {
+                    f: 4,
+                    g: 5,
+                    h: {
+                      i: 6,
+                      j: 7,
+                      k: 8,
+                      l: {
+                        m: 9,
+                        n: {
+                          o: 10,
+                          p: {
+                            q: 100,
+                            r: 23,
+                            chad: {
+                              s: "lol",
+                              t: {
+                                u: "lets see",
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      };
+      console.log(Object.keys(obj.c.e.h));
+      function findObjectDepth(object, depth, maxDepth) {
+        for (key in object) {
+          console.log(key);
+          console.log(Object.keys(object[key]));
+
+          if (Object.keys(object[key]).length > 0) {
+            depth++;
+            console.log("jump");
+            return findObjectDepth(
+              object[key],
+              depth,
+              depth > maxDepth ? depth : maxDepth
+            );
+          } else {
+            console.log("now looping in");
+          }
+        }
+        return maxDepth;
+      }
+
+      console.log(
+        "Depth of the provided object: " + findObjectDepth(obj, 0, 0)
+      );
+
+      // const arr = [1,[2,[3,4,[5,6,7,8,8],12,3,45,4],45,5,56],55];
+
+      // function findArrayDepth(arr, depth){
+
+      // }
+    </script>
+  </body>
+</html>

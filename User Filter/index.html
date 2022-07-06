@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users Filter</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        width: 25%;
+        min-width: 200px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      }
+      .search-section {
+        padding: 20px 15px;
+        color: white;
+        background: rgb(0, 0, 255, 0.7);
+      }
+      #searchitem {
+        background: rgb(1, 1, 75, 0.6);
+        border: none;
+        margin: 20px 0px;
+        padding: 10px 10px;
+        width: 100%;
+        border-radius: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="search-section">
+        <h2>Live user filter</h2>
+        <p>Search by name and/or location</p>
+        <input type="text" id="searchitem" placeholder="Search" />
+      </div>
+      <div class="users">
+        <div class="user">
+          <img src="" alt="" />
+          <div class="details">
+            <p class="name"></p>
+            <p class="location"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (async () => {
+        try {
+          const res = await fetch("https://randomuser.me/api/?results=10");
+          const users = await res.json();
+          console.log(users.results);
+        } catch (e) {
+          console.log(e.message);
+        }
+      })();
+    </script>
+  </body>
+</html>
